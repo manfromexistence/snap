@@ -1,0 +1,28 @@
+#! /usr/bin/env bash
+
+# Simple macOS wrapper around `luarocks install` because this
+# command is a little too complex to remember.
+
+# This script assumes that luarocks and lua@5.1 are installed via Homebrew.
+# openssl and gcc are needed, too.
+# ARM Macs need >= gcc-12, see bin/setup-macos
+
+
+LUA_VERSION=5.1
+BREW_PREFIX=$(brew --prefix)
+LUA_DIR="$(brew --prefix lua@$LUA_VERSION)"
+OPENSSL_BREW="$(brew --prefix openssl)"
+gcc_command='gcc'
+gcc_version='13.2.0'
+
+# For some reason luarocks needs both lua-dir and lua-versions specified...
+# cc, ld flags, openssl, etc are needed for luasec and luaossl
+luarocks --lua-version=$LUA_VERSION --lua-dir=$LUA_DIR \
+  OPENSSL_DIR="$BREW_PREFIX/opt/openssl@3/" \
+  CRYPTO_DIR="$BREW_PREFIX/opt/openssl@3/" \
+  CC=$gcc_command \
+  LD=$gcc_command \
+  LDFLAGS="-L$BREW_PREFIX/opt/openssl@3/lib" \
+  CPPFLAGS='--std=c++14' \
+  STDCPP_LIBDIR=$BREW_PREFIX/Cellar/gcc/$gcc_version/lib/gcc/current/ \
+  $@;
