@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Embedded Snap!</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="https://snap.berkeley.edu/snap/src/morphic.js"></script>
-        <script ... ></script>
-		...
-        <script>
-            var world;
-            window.onload = function () {
-                var ide = new IDE_Morph({ /* configurations dictionary ...*/ }),
-                    loop = () => {
-                        requestAnimationFrame(loop);
-                        world.doOneCycle();
-                    };
-                world = new WorldMorph(document.getElementById('world'), false); // don't fill
-                ide.openIn(world);
-                requestAnimationFrame(loop);
-            };
-        </script>
-    </head>
-    <body>
-        <canvas id="world" tabindex="1" width="500" height="300"></canvas>
-    </body>
+
+<head>
+    <!-- <script>
+    if (window.location) {
+      window.location = 'frontend/snap.html' + window.location.hash;
+    }
+    </script> 
+    <meta HTTP-EQUIV="REFRESH" content="0.1; url=snap.html">
+    <title>Redirecting to Snap!</title>  -->
+</head>
+
+<body>
+    <iframe width="480" height="390" frameBorder=0 allowfullscreen allow="geolocation; microphone;camera"
+        src="https://snap.berkeley.edu/embed?projectname=stamps&username=avi_shor&showTitle=true&showAuthor=true&pauseButton=true"></iframe>
+    <!-- <p>If you are not automatically redirected to Snap<i>!</i>,
+        <a href="frontend/snap.html">please click here.</a>
+    </p> -->
+    <!-- <iframe width="480" height="390" frameBorder=0 allowfullscreen allow="geolocation; microphone;camera" src="https://snap.berkeley.edu/embed?projectname=stamps&username=avi_shor&showTitle=true&showAuthor=true&editButton=true&pauseButton=true"></iframe> -->
+</body>
+
 </html>
